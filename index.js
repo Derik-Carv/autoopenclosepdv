@@ -16,15 +16,19 @@ rl.question('Qual procedimentimento irá fazer? \n 1. Abertura \n 2. Fechamento?
         funcao = '112'
     }
     let nums = []
-    for (let i = 101; i <= 130; i++) {
+    for (let i = 101; i <= 153; i++) {
         nums.push(`Pdv ${i}`);
     }
     
     let pdvOptions = nums.map((nums, index) => `${index + 1}. ${nums}`).join(' \n ');
         // Verifique se a URL foi fornecida
     
-    rl.question(`Escolha o pdv que deseja fazer o procedimento: \n 0. Todos Pdvs(NÃO DISPONÍVEL) \n ${pdvOptions} \n Escolha o PDV: `, async (num) => {
-    
+    rl.question(`Escolha o pdv que deseja fazer o procedimento: \n x. Sair. \n 0. Todos Pdvs(NÃO DISPONÍVEL) \n ${pdvOptions} \n Escolha o PDV: `, async (num) => {
+        
+        if (num == 'x') {
+            process.exit(0)
+        }
+
         if (funcao && num) {
             let pdvIndex = parseInt(num, 10) - 1;
             let pdvNumber = pdvIndex + 101;
@@ -79,7 +83,7 @@ rl.question('Qual procedimentimento irá fazer? \n 1. Abertura \n 2. Fechamento?
             } else {
                 console.log('Pdv não escontrado!');
             }
-            console.log('Concluído!')
+            console.log(`\n Pdv ${pdvOptions} operado com sucesso!`)
             rl.close()
     })
 })
